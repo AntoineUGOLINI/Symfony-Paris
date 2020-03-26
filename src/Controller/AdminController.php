@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use __TwigTemplate_eda5e374fad01d2c1084ec1d80d4f30b36da44175a3da075428c85999d289226;
 /**
   * Require ROLE_ADMIN for *every* controller method in this class.
  *
