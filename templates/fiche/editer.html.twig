@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fiche index{% endblock %}
+
+{% block body %}
+    <h1>Fiche index</h1>
+
+    <table class="table table-striped table-bordered table-sm table-responsive">
+        <thead>
+        <tr>
+            <th>Id</th>
+            {#<th>modif_auto</th>#}
+            <th>titre</th>
+            <th>chapeau</th>
+            <th>date_edition</th>
+            <th>date_pub</th>
+            <th>voir aussi
+            </th>
+            <th>classement</th>
+            <th>theme</th>
+            <th>numpage</th>
+            <th>numpagefin</th>
+            <th>partie
+            etoile</th>
+            <th>theme_web</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for fiche in fiches %}
+            <tr>
+                <td>{{ fiche.id }}</td>
+               {# <td>{{ fiche.modifAuto ? fiche.modifAuto|date('Y-m-d H:i:s') : '' }}</td>#}
+               {# <a href="{{ path('La_fiche', {'id_fiche': fiche.id}) }}"> <td>{{ fiche.titre }}</a> </td>#}
+                {% if fiche.rubrique is not empty %}
+                <td><a href="{{ path('La_fiche', { 'id_fiche': fiche.id }) }}">
+                    {{ fiche.titre }}
+                    </a></td>
+                {% else %}
+                    <td>{{ fiche.titre }}</td>
+                {% endif %}
+                <td>{{ fiche.chapeau }}</td>
+                <td>{{ fiche.dateEdition ? fiche.dateEdition|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ fiche.datePub? fiche.datePub|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{% if fiche.valid is not empty %}{{ fiche.valid }}<br>{% endif %}
+                {{ fiche.voiraussi }}</td>
+                <td>{{ fiche.classement }}</td>
+                <td>{{ fiche.theme }}</td>
+                <td>{{ fiche.numpage }}</td>
+                <td>{{ fiche.numpagefin }}</td>
+                <td>{{ fiche.partie }}
+               {{ fiche.etoile }}</td>
+                <td>{{ fiche.themeweb }}</td>
+
+
+
+                <td>
+                    {#{% for fiche in fiches %}#}
+                    {% if  fiche.rubrique is empty %}
+                    <a href="{{ path('fiche_supr', {'id': fiche.id}) }}" class="btn btn-danger">Supprimer</a>
+                    {% endif %}
+                    {#{% endfor %}#}
+                    <a href="{{ path('fiche_edit', {'id': fiche.id}) }}" class="btn btn-primary">Modifier</a>
+                    <a href="{{ path('affecf', {'id_fiche': fiche.id}) }}" class="btn btn-primary">Créer une rubrique</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

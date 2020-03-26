@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+    <h1>User index</h1>
+
+    <table class="table table-bordered table-striped table-sm table-responsive">
+        <a href="{{ path('use_new') }}"  class="btn btn-primary" >Créer un nouveau User</a>
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>username</th>
+            <th>roles</th>
+            <th>nom_off</th>
+            <th>nom_farm</th>
+            <th>contact</th>
+            <th>tel</th>
+            <th>mail</th>
+            <th>admin</th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>
+                {% for user in user.roles %}
+                    {{ user }}
+                {% endfor %}</td>
+                <td>{{ user.nomOff}}</td>
+                <td>{{ user.nomFarm}}</td>
+                <td>{{ user.contact }}</td>
+                <td>{{ user.tel }}</td>
+                <td>{{ user.mail }}</td>
+                <td>{{ user.admin }}</td>
+                <td>
+            {% if  user.fiche is empty or user.organisme is empty %}
+                    <a href="{{ path('use_supr', {'id': user.id}) }} " class="btn btn-danger">Supprimer</a>
+                {% endif %}
+                    <a href="{{ path('use_edit', {'id': user.id}) }}" class="btn btn-primary">Modifier</a>
+                    <a href="{{ path('use_edit_mdp', {'id': user.id}) }}" class="btn btn-primary">Modifier le mot de passe</a>
+                    <a href="{{ path('affecuo', {'id_user': user.id}) }}" class="btn btn-primary">Créer un Organisme</a>
+                    <a href="{{ path('affecuf', {'id_user': user.id}) }}" class="btn btn-primary">Créer une Fiche</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

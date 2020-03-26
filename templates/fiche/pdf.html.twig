@@ -1,0 +1,60 @@
+<table class="table">
+        <tbody>
+        {% if fichev is not empty %}
+        <thead>
+        <tr>
+            <td><h1>{{ fichev.titre }}</h1></td>
+            <td>{{ fichev.chapeau }}</td>
+        </tr>
+        </thead>
+        {% for rubrique in rubriques %}
+        <tbody>
+        <tr>
+            <td> <h2>{{ rubrique.titre}}</h2></td>
+        </tr>
+        {% for organisme in rubrique.organisme %}
+            {#<table>
+            <address>#}
+            <tr>
+                <td style="border-top:solid 1px #000000;
+                 border-right:solid 1px #000000;
+                  border-bottom:solid 1px #000000;
+                   border-left:solid 1px #000000 ">
+                    <strong>{{ organisme.nomoff }}</strong><br>
+                        {% if organisme.nomFarm  is not empty %}{{ organisme.nomFarm }}<br>{% endif %}
+                        {% if organisme.nomSiege is not empty  %}{{ organisme.nomSiege }}<br>{% endif %}
+                        {{ organisme.rue}}
+                        {{ organisme.cp }}
+                        {{ organisme.ville }}
+                        {% if organisme.cedex is not empty %}{{ organisme.cedex }}<br>{% endif %}
+                        {% if organisme.pays is not empty  %}{{ organisme.pays }}<br>{% endif %}
+                        {% if organisme.tel  is not empty %}{{ organisme.tel }}<br>{% endif %}
+                        {% if organisme.tel2 is not empty  %}{{ organisme.tel2 }}<br>{% endif %}
+                        {% if organisme.web is not empty %}{{ organisme.web }}<br>{% endif %}
+                        {% if organisme.acces is not empty %}{{ organisme.acces }}<br>{% endif %}
+                        {% if organisme.fax is not empty %}{{ organisme.fax }}<br>{% endif %}
+                        {% if organisme.mail is not empty %}{{ organisme.mail }}<br>{% endif %}
+                        {% if organisme.confidentiel is not empty %}{{ organisme.confidentiel }}<br>{% endif %}
+                        {% if organisme.codeSiege is not empty %}{{ organisme.codeSiege }}<br>{% endif %}
+                        {% if organisme.bonus is not empty  %}{{ organisme.bonus }}<br>{% endif %}
+                </td>
+                <td style="border-top:solid 1px #000000;
+                  border-bottom:solid 1px #000000;
+                   border-left:solid 1px #000000;
+                   border-right:solid 1px #000000"
+                    valign="top" align="left" >
+                    {% if organisme.resume is not empty %}{{ organisme.resume }}
+                        <br>{% endif %}
+                    <br>{{ organisme.mouvance }}</td>
+            </tr>
+            {#</address>
+            </table>#}
+        {% endfor %}
+        {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="6">Aucune rubrique affiliée à cette fiche</td>
+            </tr>
+        {% endif %}
+        </tbody>
+    </table>

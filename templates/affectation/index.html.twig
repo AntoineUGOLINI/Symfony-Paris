@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Affectation index{% endblock %}
+
+{% block body %}
+    <h1>Affectation index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Id_rub</th>
+                <th>Id_org</th>
+                <th>Modif_auto</th>
+                <th>Commentaire</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for affectation in affectations %}
+            <tr>
+                <td>{{ affectation.id }}</td>
+                <td>{{ affectation.idRub }}</td>
+                <td>{{ affectation.idOrg }}</td>
+                <td>{{ affectation.modifAuto ? affectation.modifAuto|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ affectation.commentaire }}</td>
+                <td>
+                    <a href="{{ path('affectation_show', {'id': affectation.id}) }}">show</a>
+                    <a href="{{ path('affectation_edit', {'id': affectation.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('affectation_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier une Rubrique{% endblock %}
+
+{% block body %}
+    <h1>Modifier une Rubrique</h1>
+
+    {{ include('rubrique/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('Rub_aff') }}" class="btn btn-primary">back to list</a>
+
+
+{% endblock %}

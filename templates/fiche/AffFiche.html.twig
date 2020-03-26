@@ -1,0 +1,7 @@
+Vous etes dans la liste des fiches:</br>
+{% if(message) %}
+{{ message }}
+{% for id in Fiche %}
+<b>{{ fiche.id.titre }}</b>
+Thème:{{ fiche.id.theme }}<br/>>
+<{% endfor %}

@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Organisme index{% endblock %}
+
+{% block body %}
+
+    <h1>Organisme index</h1>
+
+    <table class="table table-striped table-bordered table-sm table-responsive">
+        <thead>
+        <tr>
+            <th>Id</th>
+            {#<th>crea_auto</th>#}
+            {#<th>modif_auto</th>#}
+            <th>Noms</th>
+            <th>mouvance</th>
+            <th>adresse
+            </th>
+            <th>acces</th>
+            <th>Coordonnes</th>
+            <th>Resume</th>
+            {#<th>confidentiel</th>#}
+            <th>code_siege</th>
+            <th>bonus</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for organisme in organismes %}
+            <tr>
+                <td>{{ organisme.id }}</td>
+                {#<td>{{ organisme.creaAuto ? organisme.creaAuto|date('Y-m-d H:i:s') : '' }}</td>#}
+                {#<td>{{ organisme.modifAuto ? organisme.modifAuto|date('Y-m-d H:i:s') : '' }}</td>#}
+                <td>{{ organisme.nomoff }}<br>
+                    {% if organisme.nomFarm == '' %}{{ organisme.nomFarm }}<br>{% endif %}
+                {% if organisme.nomSiege == '' %}{{ organisme.nomSiege}}{% endif %}</td>
+                <td>{{ organisme.mouvance}}</td>
+                <td>{{ organisme.rue}}
+                {{ organisme.cp }}
+                {{organisme.ville }}
+                {{ organisme.cedex }}
+                {{ organisme.pays }}</td>
+                <td>{{ organisme.acces }}</td>
+               <td> {% if organisme.tel is not empty %}{{ organisme.tel }}<br>{% endif %}
+                   {% if organisme.tel2 is not empty %}{{ organisme.tel2 }}<br>{% endif %}
+                   {% if organisme.fax  is not empty%}{{ organisme.fax }}<br>{% endif %}
+                   {% if organisme.mail is not empty %}{{ organisme.mail }}<br>{% endif %}
+                   {% if organisme.web  is not empty%}{{ organisme.web }}{% endif %}</td>
+                {#<td>{{ organisme.modifDate ? organisme.modifDate|date('Y-m-d H:i:s') : '' }}</td>#}
+                <td>{{ organisme.resume}}</td>
+                {#<td>{{ organisme.confidentiel }}</td>#}
+                <td>{{ organisme.codeSiege }}</td>
+                <td>{{ organisme.bonus }}</td>
+                <td>
+                    <a href="{{ path('Org_supr', {'id': organisme.id}) }}" class="btn btn-danger">Supprimer</a>
+                    <a href="{{ path('orga_edit', {'id': organisme.id}) }}" class="btn btn-primary">Modifier</a>
+                   {# <a href="{{ path('affeco', {'id_organisme': organisme.id}) }}" class="btn btn-primary">Affecter une Rubrique</a>#}
+                    {#changer l'affect de rub en org#}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

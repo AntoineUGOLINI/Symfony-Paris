@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rubrique index{% endblock %}
+
+{% block body %}
+    <h1>Rubrique index</h1>
+
+    <table class="table table-striped table-bordered table-sm table-responsive">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>titre</th>
+            <th>id_fiche</th>
+            <th>classement</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for rubrique in rubriques %}
+            <tr>
+                <td>{{ rubrique.id }}</td>
+                <td>{{ rubrique.titre }}</td>
+                <td>{{ rubrique.Fiche.id}}</td>
+                <td>{{ rubrique.classement}}</td>
+                <td>
+            {% if  rubrique.organisme is empty %}
+                    <a href="{{ path('Rub_supr', {'id': rubrique.id}) }}" class="btn btn-danger">Supprimer</a>
+                {% endif %}
+                    <a href="{{ path('Rub_edit', {'id': rubrique.id}) }}" class="btn btn-primary">Modifier</a>
+                    <a href="{{ path('affec', {'id_rubrique': rubrique.id}) }}" class="btn btn-primary">Affecter un organisme</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

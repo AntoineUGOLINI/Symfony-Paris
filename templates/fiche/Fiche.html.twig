@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fiche{% endblock %}
+{% block body %}
+<table class="table">
+    <tbody>
+    {% if fichev is not empty %}
+        <thead>
+        <tr>
+        <td><h1>{{ fichev.titre }}</h1></td>
+
+        </tr>
+        </thead>
+                {% for rubrique in rubriques %}
+                        <tbody>
+                        <tr>
+                            <td> <h2>{{ rubrique.titre}}</h2></td>
+                        </tr>
+                            {% for organisme in rubrique.organisme %}
+                                {#<table>
+                                <address>#}
+                                <tr class="table-bordered table-striped ">
+                                <td><address><strong>{{ organisme.nomoff }}</strong><br>
+                                        {% if organisme.nomFarm  is not empty %}{{ organisme.nomFarm }}<br>{% endif %}
+                                        {% if organisme.nomSiege is not empty  %}{{ organisme.nomSiege }}<br>{% endif %}
+                                    {{ organisme.rue}}
+                                    {{ organisme.cp }}
+                                    {{ organisme.ville }}
+                                        {% if organisme.cedex is not empty %}{{ organisme.cedex }}<br>{% endif %}
+                                        {% if organisme.pays is not empty  %}{{ organisme.pays }}<br>{% endif %}
+                                        {% if organisme.tel  is not empty %}{{ organisme.tel }}<br>{% endif %}
+                                        {% if organisme.tel2 is not empty  %}{{ organisme.tel2 }}<br>{% endif %}
+                                        {% if organisme.web is not empty %}{{ organisme.web }}<br>{% endif %}
+                                        {% if organisme.acces is not empty %}{{ organisme.acces }}<br>{% endif %}
+                                        {% if organisme.fax is not empty %}{{ organisme.fax }}<br>{% endif %}
+                                        {% if organisme.mail is not empty %}{{ organisme.mail }}<br>{% endif %}
+                                        {% if organisme.confidentiel is not empty %}{{ organisme.confidentiel }}<br>{% endif %}
+                                        {% if organisme.codeSiege is not empty %}{{ organisme.codeSiege }}<br>{% endif %}
+                                        {% if organisme.bonus is not empty  %}{{ organisme.bonus }}<br>{% endif %}</address>
+                                </td>
+                                <td>{% if organisme.resume is not empty %}{{ organisme.resume }}
+                                    <br>{% endif %}
+                                    <br>{{ organisme.mouvance }}</td>
+                                </tr>
+                                {#</address>
+                                </table>#}
+                            {% endfor %}
+                         {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="6">Aucune rubrique affiliée à cette fiche</td>
+                    </tr>
+    {% endif %}
+                        <div class="text-right">
+                        <a href="{{ path('pdf', {'id_fiche': fichev.id}) }}" class="btn btn-primary " >pdf</a>
+                        </div>
+    </tbody>
+
+</table>
+    <td style="border-top:solid 1px #000000;" valign="top" align="right">
+    <a href="{{ path('pdf', {'id_fiche': fichev.id}) }}" class="btn btn-primary" >pdf</a>
+    </td>
+{% endblock %}
+{#<table class="table-bordered">
+    <address>
+        <strong>{{ organisme.nomoff }}</strong><br>
+        {{ organisme.nomFarm }}
+        {{ organisme.nomSiege }}<br>
+        {{ organisme.mouvance }}<br>
+        {{ organisme.rue}}
+        {{ organisme.cp }}
+        {{ organisme.ville }}
+        {{ organisme.cedex }}
+        {{ organisme.pays }}<br>
+        {{ organisme.acces }}<br>
+        {{ organisme.tel }}<br>
+        {{ organisme.tel2 }}<br>
+        {{ organisme.fax }}<br>
+        {{ organisme.mail }}<br>
+        {{ organisme.web }}<br>
+        {{ organisme.confidentiel }}<br>
+        {{ organisme.codeSiege }}<br>
+        {{ organisme.bonus }}<br>
+    </address>
+</table>#}

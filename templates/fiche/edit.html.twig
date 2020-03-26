@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier une Fiche{% endblock %}
+
+{% block body %}
+    <h1>Modifier une Fiche</h1>
+
+    {{ include('fiche/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('fiche_aff') }}" class="btn btn-primary">back to list</a>
+
+
+{% endblock %}
