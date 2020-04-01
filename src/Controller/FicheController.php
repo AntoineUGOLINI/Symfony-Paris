@@ -165,7 +165,8 @@ class FicheController extends AbstractController
             $RAW_QUERY = 'SELECT rubrique_organisme.organisme_id
                           FROM rubrique
                           INNER join rubrique_organisme on rubrique.id=rubrique_organisme.rubrique_id
-                          Where rubrique.id = :id_rubrique';
+                          Where rubrique.id =
+                           :id_rubrique';
             $statement = $em->getConnection()->prepare($RAW_QUERY);
             $statement->bindValue('id_rubrique', $id_rubrique);
             $statement->execute();
